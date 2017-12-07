@@ -1,0 +1,139 @@
+States,Name,Type
+0,INIT,Init
+1,water found,Inter
+2,trace water to hive,trigger{trace}
+3,goto water,trigger{goto}
+4,nothing interesting,Inter
+5,goto search,trigger{goto}
+6,goto elsewhere,trigger{goto}
+7,enemy found,Inter
+8,goto enemy,trigger{goto}
+9,trace enemy to hive,trigger{trace}
+,,
+Transitions,Start State,End State
+0,INIT,water found
+1,water found,trace water to hive
+2,water found,goto water
+3,INIT,enemy found
+4,enemy found,trace enemy to hive
+5,enemy found,goto enemy
+6,INIT,nothing interesting
+7,nothing interesting,goto search
+8,nothing interesting,goto elsewhere
+,,
+Syntax Tree,output,
+0,0,
+Nodes,Type,output (Node -> Input)
+0,operator{B>SS},
+1,param{const scal=0},0->1
+2,operator{SsizeR[]},0->0
+3,param{ref[]:bRes},2->0
+,,
+Syntax Tree,output,
+0,3,
+Nodes,Type,output (Node -> Input)
+0,operator{B>SS},
+1,param{const scal=0},0->1
+2,operator{SsizeR[]},0->0
+3,param{ref[]:enemies},2->0
+,,
+Syntax Tree,output,
+1,1,
+Nodes,Type,output (Node -> Input)
+0,operator{S<SS},
+1,param{const scal=1},0->1
+2,operator{SminValS[]},0->0
+3,operator{S[]distV[]V},2->0
+4,operator{VgetR[]T},3->1
+5,param{ref[]:bRes},4->1
+6,param{const txt=pos},4->0
+7,param{vec:curPos},3->1
+,,
+Syntax Tree,output,
+1,4,
+Nodes,Type,output (Node -> Input)
+0,operator{S<SS},
+1,param{const scal=2},0->1
+2,operator{SminValS[]},0->0
+3,operator{S[]distV[]V},2->0
+4,operator{VgetR[]T},3->1
+5,param{ref[]:enemies},4->1
+6,param{const txt=pos},4->0
+7,param{vec:curPos},3->1
+,,
+Syntax Tree,output,
+2,7,
+Nodes,Type,output (Node -> Input)
+0,operator{V!=VV},
+1,param{vec:curPos},0->0
+2,param{vec:trgPos},0->1
+,,
+Syntax Tree,output,
+3,trace water to hive->0,
+Nodes,Type,output (Node -> Input)
+0,operator{V[]aggV*},
+1,operator{VgetRT},0->0
+2,param{ref:home},1->0
+3,param{const string=pos},1->1
+,,
+Syntax Tree,output,
+3,trace enemy to hive->0,
+Nodes,Type,output (Node -> Input)
+0,operator{V[]aggV*},
+1,operator{VgetRT},0->0
+2,param{ref:home},1->0
+3,param{const string=pos},1->1
+,,
+Syntax Tree,output,
+4,trace water to hive->1,
+Nodes,Type,output (Node -> Input)
+0,param{const color=blue},
+,,
+Syntax Tree,output,
+4,trace enemy to hive->1,
+Nodes,Type,output (Node -> Input)
+0,param{const color=red},
+,,
+Syntax Tree,output,
+5,goto water->0,
+Nodes,Type,output (Node -> Input)
+0,operator{V[]aggV*},
+1,operator{VgetRT},0->0
+2,operator{RgetR[]S},1->0
+3,param{const string=pos},1->1
+4,param{ref[]:bRes},2->0
+5,operator{SminIdS[]},2->1
+6,operator{S[]distV[]V},5->0
+7,operator{VgetR[]T},6->0
+8,param{ref[]:bRes},7->0
+9,param{const txt=pos},7->1
+10,param{vec:curPos},6->0
+,,
+Syntax Tree,output,
+5,goto enemy->0,
+Nodes,Type,output (Node -> Input)
+0,operator{V[]aggV*},
+1,operator{VgetRT},0->0
+2,operator{RgetR[]S},1->0
+3,param{const string=pos},1->1
+4,param{ref[]:enemies},2->0
+5,operator{SminIdS[]},2->1
+6,operator{S[]distV[]V},5->0
+7,operator{VgetR[]T},6->0
+8,param{ref[]:bRes},7->0
+9,param{const txt=pos},7->1
+10,param{vec:curPos},6->0
+,,
+Syntax Tree,output,
+6,goto search->0,
+Nodes,Type,output (Node -> Input)
+0,operator{V[]aggV*},
+1,param{vec:trgPos},0->0
+,,
+Syntax Tree,output,
+7,goto elsewhere->0,
+Nodes,Type,output (Node -> Input)
+0,operator{V[]aggV*},
+1,operator{VrandCircleVS},0->0
+2,param{vec:curPos},1->0
+3,param{const scal=5},1->1

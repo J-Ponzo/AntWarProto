@@ -1,0 +1,71 @@
+States;Name;Type
+0;INIT;Init
+1;prey on sight;Inter
+2;trace to hive;trigger{trace}
+3;goto prey;trigger{goto}
+4;no prey on sight;Inter
+5;goto search;trigger{goto}
+6;goto elsewhere;trigger{goto}
+;;
+Transitions;Start State;End State
+0;INIT;prey on sight
+1;prey on sight;trace to hive
+2;prey on sight;goto prey
+3;INIT;no prey on sight
+4;no prey on sight;goto search
+5;no prey on sight;goto elsewhere
+;;
+Syntax Tree;output;
+0;0;
+Nodes;Type;output (Node -> Input)
+0;operator{isSetR};
+1;param{ref:prey};0->0
+;;
+Syntax Tree;output;
+1;1;
+Nodes;Type;output (Node -> Input)
+0;operator{<};
+1;param{const scal=1};0->1
+2;operator{dist};0->0
+3;param{vec:curPos};2->0
+4;operator{getV};2->1
+5;param{ref:prey};4->0
+6;param{const string=pos};4->1
+;;
+Syntax Tree;output;
+2;4;
+Nodes;Type;output (Node -> Input)
+0;operator{!=V};
+1;param{vec:curPos};0->0
+2;param{vec:trgPos};0->1
+;;
+Syntax Tree;output;
+3;trace to hive->0;
+Nodes;Type;output (Node -> Input)
+0;operator{getV};
+1;param{ref:home};0->0
+2;param{const string=pos};0->1
+;;
+Syntax Tree;output;
+4;trace to hive->1;
+Nodes;Type;output (Node -> Input)
+0;param{const color=green};
+;;
+Syntax Tree;output;
+5;goto prey->0;
+Nodes;Type;output (Node -> Input)
+0;operator{getV};
+1;param{ref:prey};0->0
+2;param{const string=pos};0->1
+;;
+Syntax Tree;output;
+6;goto search->0;
+Nodes;Type;output (Node -> Input)
+0;param{vec:trgPos};
+;;
+Syntax Tree;output;
+7;goto elsewhere->0;
+Nodes;Type;output (Node -> Input)
+0;operator{randCircle};
+1;param{vec:curPos};0->0
+2;param{const scal=5};0->1
