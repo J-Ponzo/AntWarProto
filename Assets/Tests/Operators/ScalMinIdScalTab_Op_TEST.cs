@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -50,7 +49,7 @@ public class ScalMinIdScalTab_Op_TEST : MonoBehaviour {
         }
         else
         {
-            Debug.LogError(this.GetType().Name + " KO ! result for (" + tab.ToString()+ ") should be '" + expected + "' but it is '" + testValue + "'");
+            Debug.LogError(this.GetType().Name + " KO ! result for (" + tab.ToString() + ") should be '" + expected + "' but it is '" + testValue + "'");
         }
     }
 

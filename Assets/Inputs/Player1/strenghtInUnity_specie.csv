@@ -1,0 +1,7 @@
+red res,green res,blue res,,,,,,,
+0,0,100,,,,,,,
+Name,Behavior,Head,Arms,Body,Legs,Queue,None1,None2,None3
+queen,siu_genitor_behavior,,,,,,,,
+scoot,siu_scoot_behavior,,,,,,,,
+picker,siu_pick_behavior,,,,,,,,
+soldier,siu_soldier_behavior,,,,,,,,
