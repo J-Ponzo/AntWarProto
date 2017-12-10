@@ -10,44 +10,12 @@
         //Retieve first arg s1
         ABScalar s1 = null;
         ABNode input1 = Inputs[0];
-        //input node is an scalar operator (computed from sub-tree)
-        if (input1 is ABOperator<ABScalar>)         
-        {
-            ABOperator<ABScalar> abOperator = (ABOperator<ABScalar>)input1;
-            s1 = abOperator.Evaluate(context);
-        }
-        //input node is an scalar parameter (user set constante)
-        else if (input1 is ABParam<ABScalar>)         
-        {
-            ABParam<ABScalar> param = (ABParam<ABScalar>)input1;
-            s1 = param.Evaluate(context);
-        }
-        //input is not correct (wrong type maybe)
-        else
-        {
-            throw new System.NotSupportedException();
-        }
+        s1 = OperatorHelper.Instance.getScalarParam(context, input1);
 
         //Retieve second arg s2
         ABScalar s2 = null;
         ABNode input2 = Inputs[1];
-        //input node is an scalar operator (computed from sub-tree)
-        if (input2 is ABOperator<ABScalar>)         
-        {
-            ABOperator<ABScalar> abOperator = (ABOperator<ABScalar>)input2;
-            s2 = abOperator.Evaluate(context);
-        }
-        //input node is an scalar parameter (user set constante)
-        else if (input2 is ABParam<ABScalar>)         
-        {
-            ABParam<ABScalar> param = (ABParam<ABScalar>)input2;
-            s2 = param.Evaluate(context);
-        }
-        //input is not correct (wrong type maybe)
-        else
-        {
-            throw new System.NotSupportedException();
-        }
+        s2 = OperatorHelper.Instance.getScalarParam(context, input2);
 
         //Build then return Result
         ABScalar result = TypeFactory.CreateEmptyScalar();

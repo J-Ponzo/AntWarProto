@@ -14,30 +14,12 @@ public class AB_Bool_NotEquals_Vec_Vec_Operator : ABOperator<ABBool>
         //Get v1
         ABVec v1 = null;
         ABNode input1 = Inputs[0];
-        if (input1 is ABOperator<ABVec>)
-        {
-            ABOperator<ABVec> abOperator = (ABOperator<ABVec>)input1;
-            v1 = abOperator.Evaluate(context);
-        }
-        else if (input1 is ABParam<ABVec>)
-        {
-            ABParam<ABVec> param = (ABParam<ABVec>)input1;
-            v1 = param.Evaluate(context);
-        }
+        v1 = OperatorHelper.Instance.getVecParam(context, input1);        
 
         //Get v2
         ABVec v2 = null;
         ABNode input2 = Inputs[1];
-        if (input2 is ABOperator<ABVec>)
-        {
-            ABOperator<ABVec> abOperator = (ABOperator<ABVec>)input2;
-            v2 = abOperator.Evaluate(context);
-        }
-        else if (input2 is ABParam<ABVec>)
-        {
-            ABParam<ABVec> param = (ABParam<ABVec>)input2;
-            v2 = param.Evaluate(context);
-        }
+        v2 = OperatorHelper.Instance.getVecParam(context, input2);        
 
         //Result
         ABBool result = TypeFactory.CreateEmptyBool();

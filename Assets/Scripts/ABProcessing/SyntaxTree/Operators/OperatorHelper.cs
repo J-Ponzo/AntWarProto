@@ -102,6 +102,27 @@ public class OperatorHelper : MonoBehaviour
         return tab;
     }
 
+    public ABTable<ABRef> getTabRefParam(ABContext context, ABNode input)
+    {
+        ABTable<ABRef> tab = null;        
+        if (input is ABOperator<ABTable<ABRef>>)
+        {
+            ABOperator<ABTable<ABRef>> abOperator = (ABOperator<ABTable<ABRef>>)input;
+            tab = abOperator.Evaluate(context);
+        }
+        else if (input is ABParam<ABTable<ABRef>>)
+        {
+            ABParam<ABTable<ABRef>> param = (ABParam<ABTable<ABRef>>)input;
+            tab = param.Evaluate(context);
+        }
+        else
+        {
+            throw new System.NotSupportedException();
+        }
+
+        return tab;
+    }
+
 
     // NOT TESTED YET
     public ABRef getRefParam(ABContext context, ABNode input)
@@ -126,7 +147,6 @@ public class OperatorHelper : MonoBehaviour
         return reference;
     }
 
-    // NOT TESTED YET
     public ABText getTextParam(ABContext context, ABNode input)
     {
         ABText identifier = null;
