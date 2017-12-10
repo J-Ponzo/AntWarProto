@@ -6,9 +6,54 @@ public class HiveScript : MonoBehaviour {
     [AttrName(Identifier = "pos")]
     [SerializeField]
     private Vector2 location;
+    [SerializeField]
+    private float redResAmout;
+    [SerializeField]
+    private float greenResAmout;
+    [SerializeField]
+    private float blueResAmout;
 
-	// Use this for initialization
-	void Start () {
+    public float RedResAmout
+    {
+        get
+        {
+            return redResAmout;
+        }
+
+        set
+        {
+            redResAmout = value;
+        }
+    }
+
+    public float GreenResAmout
+    {
+        get
+        {
+            return greenResAmout;
+        }
+
+        set
+        {
+            greenResAmout = value;
+        }
+    }
+
+    public float BlueResAmout
+    {
+        get
+        {
+            return blueResAmout;
+        }
+
+        set
+        {
+            blueResAmout = value;
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
