@@ -17,7 +17,7 @@
             s1 = abOperator.Evaluate(context);
         }
         //input node is an scalar parameter (user set constante)
-        else if (input1 is ABParam<ABBool>)         
+        else if (input1 is ABParam<ABScalar>)         
         {
             ABParam<ABScalar> param = (ABParam<ABScalar>)input1;
             s1 = param.Evaluate(context);
@@ -38,7 +38,7 @@
             s2 = abOperator.Evaluate(context);
         }
         //input node is an scalar parameter (user set constante)
-        else if (input2 is ABParam<ABBool>)         
+        else if (input2 is ABParam<ABScalar>)         
         {
             ABParam<ABScalar> param = (ABParam<ABScalar>)input2;
             s2 = param.Evaluate(context);
