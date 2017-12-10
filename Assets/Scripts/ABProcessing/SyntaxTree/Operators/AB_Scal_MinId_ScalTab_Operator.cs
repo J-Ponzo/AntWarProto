@@ -12,20 +12,8 @@ public class AB_Scal_MinId_ScalTab_Operator : ABOperator<ABScalar> {
     {
         ABTable<ABScalar> tab = null;
         ABNode input1 = Inputs[0];
-        if (input1 is ABOperator<ABTable<ABScalar>>)
-        {
-            ABOperator<ABTable<ABScalar>> abOperator = (ABOperator<ABTable<ABScalar>>)input1;
-            tab = abOperator.Evaluate(context);
-        }
-        else if (input1 is ABParam<ABScalar>)
-        {
-            ABParam<ABTable<ABScalar>> param = (ABParam<ABTable<ABScalar>>)input1;
-            tab = param.Evaluate(context);
-        }
-        else
-        {
-            throw new System.NotSupportedException();
-        }
+
+        tab = OperatorHelper.Instance.getTabScalarParam(context, input1);
 
         //Build then return Result
         ABScalar[] values = new ABScalar[tab.Values.Length];
