@@ -1,22 +1,21 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
-public class BoolLessThanScalScal_Op_Test : MonoBehaviour {
-
+public class BoolGreaterThanScalScal_Op_TEST : MonoBehaviour
+{
     [SerializeField]
-    private string symbol = "B<SS";
+    private string symbol = "B>SS";
     [SerializeField]
     private int nbTests = 100;
-
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         for (int i = 0; i < nbTests; i++)
         {
             RandomizeTest();
         }
-	}
-	
+    }
+
     private void RandomizeTest()
     {
         //Generate rabdom values
@@ -25,7 +24,7 @@ public class BoolLessThanScalScal_Op_Test : MonoBehaviour {
 
         //Build test operator
         ABContext ctx = new ABContext();
-        AB_Bool_LessThan_Scal_Scal_Operator ope = (AB_Bool_LessThan_Scal_Scal_Operator)ABOperatorFactory.CreateOperator(symbol);
+        AB_Bool_GreaterThan_Scal_Scal_Operator ope = (AB_Bool_GreaterThan_Scal_Scal_Operator)ABOperatorFactory.CreateOperator(symbol);
         ABParam<ABScalar> arg1 = ABParamFactory.CreateScalarParam("const", r1);
         ABParam<ABScalar> arg2 = ABParamFactory.CreateScalarParam("const", r2);
         ope.Inputs[0] = arg1;
@@ -33,19 +32,21 @@ public class BoolLessThanScalScal_Op_Test : MonoBehaviour {
 
         //Test
         bool testValue = ope.Evaluate(ctx).Value;
-        bool expected = r1 < r2;
-        if (testValue== expected)
+        bool expected = r1 > r2;
+        if (testValue == expected)
         {
             Debug.Log(this.GetType().Name + " OK");
-        } else
+        }
+        else
         {
-            Debug.Log(this.GetType().Name + " KO ! result for (" + r1 + ", "+r2+") should be '"+ expected + "' but it is '" + testValue + "'");
+            Debug.Log(this.GetType().Name + " KO ! result for (" + r1 + ", " + r2 + ") should be '" + expected + "' but it is '" + testValue + "'");
         }
     }
 
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
         Application.Quit();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

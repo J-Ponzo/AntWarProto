@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-public class AB_Scal_MinId_ScalTab_Operator : ABOperator<ABScalar> {
+﻿public class AB_Scal_MinId_ScalTab_Operator : ABOperator<ABScalar> {
 
     public AB_Scal_MinId_ScalTab_Operator()
     {

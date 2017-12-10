@@ -1,14 +1,13 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Linq;
-using UnityEngine;
 
-public class ScalMinIdScalTab_Op_TEST : MonoBehaviour {
-
+public class ScalMaxIdScalTab_Op_TEST : MonoBehaviour
+{
     [SerializeField]
-    private string symbol = "SminIdS[]";
+    private string symbol = "SmaxIdS[]";
     [SerializeField]
     private int nbTests = 100;
-
     // Use this for initialization
     void Start()
     {
@@ -20,27 +19,27 @@ public class ScalMinIdScalTab_Op_TEST : MonoBehaviour {
 
     private void RandomizeTest()
     {
-        float[] tab = new float[10];        
+        float[] tab = new float[10];
 
         for (int i = 0; i < 10; i++)
         {
             //Generate random values
             float r = Random.value * 100 - 50;
             tab[i] = r;
-        }                             
+        }
 
         //Build test operator
         ABContext ctx = new ABContext();
-        AB_Scal_MinId_ScalTab_Operator ope = (AB_Scal_MinId_ScalTab_Operator)ABOperatorFactory.CreateOperator(symbol);
-        ABParam<ABTable<ABScalar>> arg = (ABParam<ABTable<ABScalar>>) ABParamFactory.CreateScalarTableParam("const", tab);        
-        ope.Inputs[0] = arg;        
+        AB_Scal_MaxId_ScalTab_Operator ope = (AB_Scal_MaxId_ScalTab_Operator)ABOperatorFactory.CreateOperator(symbol);
+        ABParam<ABTable<ABScalar>> arg = (ABParam<ABTable<ABScalar>>) ABParamFactory.CreateScalarTableParam("const", tab);
+        ope.Inputs[0] = arg;
 
         //Test
         int testValue = (int)ope.Evaluate(ctx).Value;
         int expected = 0;
         for(int i = 0; i < tab.Length; i++)
         {
-            if (tab[i] == tab.Min())
+            if (tab[i] == tab.Max())
                 expected = i;
         }
         if (testValue == expected)
