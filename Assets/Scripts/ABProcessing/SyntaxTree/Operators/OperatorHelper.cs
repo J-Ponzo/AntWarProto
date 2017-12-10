@@ -167,8 +167,7 @@ public class OperatorHelper : MonoBehaviour
         }
         return identifier;
     }
-
-    // NOT TESTED YET
+    
     public ABBool getBoolParam(ABContext context, ABNode input)
     {
         ABBool identifier = null;
@@ -181,6 +180,27 @@ public class OperatorHelper : MonoBehaviour
         else if (input is ABParam<ABBool>)
         {
             ABParam<ABBool> param = (ABParam<ABBool>)input;
+            identifier = param.Evaluate(context);
+        }
+        else
+        {
+            throw new System.NotSupportedException();
+        }
+        return identifier;
+    }
+    
+    public ABColor getColorParam(ABContext context, ABNode input)
+    {
+        ABColor identifier = null;
+
+        if (input is ABOperator<ABColor>)
+        {
+            ABOperator<ABColor> abOperator = (ABOperator<ABColor>)input;
+            identifier = abOperator.Evaluate(context);
+        }
+        else if (input is ABParam<ABColor>)
+        {
+            ABParam<ABColor> param = (ABParam<ABColor>)input;
             identifier = param.Evaluate(context);
         }
         else
