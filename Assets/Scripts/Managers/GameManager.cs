@@ -29,14 +29,10 @@ public class GameManager : MonoBehaviour {
     }
 
     //Paths
-    [SerializeField]
-    private string SPECIE_FILE_SUFFIX = "specie.csv";
-    [SerializeField]
-    private string INPUTS_FOLDER_PATH = "Assets/Inputs/";
-    [SerializeField]
-    private string PLAYER1_SPECIE_FOLDER = "Player1/";
-    [SerializeField]
-    private string PLAYER2_SPECIE_FOLDER = "Player2/";
+    public string SPECIE_FILE_SUFFIX = "specie.csv";
+    public string INPUTS_FOLDER_PATH = "Assets/Inputs/";
+    public string PLAYER1_SPECIE_FOLDER = "Player1/";
+    public string PLAYER2_SPECIE_FOLDER = "Player2/";
 
     //Templates & Prefabs
     [SerializeField]
@@ -56,6 +52,32 @@ public class GameManager : MonoBehaviour {
 
     private Specie p1_specie;
     private Specie p2_specie;
+
+    public GameObject P1_hive
+    {
+        get
+        {
+            return p1_hive;
+        }
+
+        set
+        {
+            p1_hive = value;
+        }
+    }
+
+    public GameObject P2_hive
+    {
+        get
+        {
+            return p2_hive;
+        }
+
+        set
+        {
+            p2_hive = value;
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -134,6 +156,7 @@ public class GameManager : MonoBehaviour {
             {
                 Cast cast = p1_specie.Casts[key];
                 template = Instantiate(emptyAgentPrefab);
+                template.GetComponent<AgentEntity>().Authority = PlayerAuthority.Player1;
                 template.SetActive(false);
                 p1_unitTemplates[ind] = template;
                 UnitTemplateInitializer.InitTemplate(cast, template);
@@ -154,6 +177,7 @@ public class GameManager : MonoBehaviour {
             {
                 Cast cast = p2_specie.Casts[key];
                 template = Instantiate(emptyAgentPrefab);
+                template.GetComponent<AgentEntity>().Authority = PlayerAuthority.Player2;
                 template.SetActive(false);
                 p2_unitTemplates[ind] = template;
                 UnitTemplateInitializer.InitTemplate(cast, template);
@@ -165,8 +189,10 @@ public class GameManager : MonoBehaviour {
     private void InitGameObjects()
     {
         //Hives
-        p1_hive = Instantiate(hivePrefab, new Vector3(-3f, 0f, 0f), Quaternion.identity);
-        p2_hive = Instantiate(hivePrefab, new Vector3(3f, 0f, 0f), Quaternion.identity);
+        p1_hive = Instantiate(hivePrefab, new Vector3(-30f, -0.45f, 0f), Quaternion.identity);
+        p1_hive.name = "p1_hive";
+        p2_hive = Instantiate(hivePrefab, new Vector3(30f, -0.45f, 0f), Quaternion.identity);
+        p2_hive.name = "p2_hive";
         HiveScript p1_hiveScript = p1_hive.GetComponent<HiveScript>();
         HiveScript p2_hiveScript = p2_hive.GetComponent<HiveScript>();
         p1_hiveScript.RedResAmout = p1_specie.RedResAmount;
@@ -175,11 +201,24 @@ public class GameManager : MonoBehaviour {
         p2_hiveScript.RedResAmout = p2_specie.RedResAmount;
         p2_hiveScript.GreenResAmout = p2_specie.GreenResAmount;
         p2_hiveScript.BlueResAmout = p2_specie.BlueResAmount;
+        foreach (string key in p1_specie.Casts.Keys)
+        {
+            p1_hiveScript.Population.Add(key, 0);
+        }
+        foreach (string key in p2_specie.Casts.Keys)
+        {
+            p2_hiveScript.Population.Add(key, 0);
+        }
+
 
         //Queens
-        GameObject p1_queen = Instantiate(p1_unitTemplates[0], new Vector3(-3f, 0f, 0f), Quaternion.identity);
-        GameObject p2_queen = Instantiate(p2_unitTemplates[0], new Vector3(3f, 0f, 0f), Quaternion.identity);
+        GameObject p1_queen = Instantiate(p1_unitTemplates[0], new Vector3(-30f, 0f, 0f), Quaternion.identity);
+        p1_queen.name = "p1_queen";
+        GameObject p2_queen = Instantiate(p2_unitTemplates[0], new Vector3(30f, 0f, 0f), Quaternion.identity);
+        p2_queen.name = "p2_queen";
         p1_queen.SetActive(true);
         p2_queen.SetActive(true);
+        p1_hiveScript.Population[p1_specie.QueenCastName]++;
+        p2_hiveScript.Population[p2_specie.QueenCastName]++;
     }
 }

@@ -536,6 +536,14 @@ public class ABOperatorFactory {
             case OperatorType.Vec_TermProd_Vec_Vec:
                 abOperator = new AB_Vec_TermProd_Vec_Vec_Operator();
                 break;
+            case OperatorType.Scal_MinVal_ScalTab:
+                abOperator = new AB_Scal_MinVal_ScalTab_Operator();
+                break;
+            case OperatorType.Ref_Get_RefTab_Scal:
+                abOperator = new AB_Ref_Get_RefTab_Scal_Operator();
+                break;
+            default:
+                throw new NotImplementedException("Type " + type + " not implemented");
         }
 
         return abOperator;

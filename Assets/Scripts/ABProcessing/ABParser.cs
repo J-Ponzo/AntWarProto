@@ -118,6 +118,8 @@ public class ABParser
             case "param":
                 node = (ABNode)ParseParam(typeParams);
                 break;
+            default:
+                throw new NotSupportedException("Node type" + typeName + " not handled !");
         }
         curNodes.Add(node);
 
@@ -131,6 +133,10 @@ public class ABParser
             int pinId = int.Parse(pinIdStr);
             IABOperator outputNode = (IABOperator)curNodes[nodeId];
             outputNode.Inputs[pinId] = node;
+            if (node == null || outputNode == null)
+            {
+                Debug.Log(node.GetType());
+            }
             node.Output = (ABNode)outputNode;
         } else
         {

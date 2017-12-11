@@ -52,7 +52,7 @@ public class ABActionFactory {
                 throw new NotImplementedException();
                 break;
             case ActionType.Lay:
-                throw new NotImplementedException();
+                action =  new ABLayAction();
                 break;
             case ActionType.Pick:
                 throw new NotImplementedException();

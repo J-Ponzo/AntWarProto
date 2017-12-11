@@ -20,7 +20,7 @@ public class ABParamFactory
                 return ParamType.Bool;
             case "scal":
                 return ParamType.Scalar;
-            case "string":
+            case "txt":
                 return ParamType.Text;
             case "vec":
                 return ParamType.Vec;
@@ -28,6 +28,18 @@ public class ABParamFactory
                 return ParamType.Color;
             case "ref":
                 return ParamType.Ref;
+            case "bool[]":
+                return ParamType.BoolTable;
+            case "scal[]":
+                return ParamType.ScalarTable;
+            case "txt[]":
+                return ParamType.TextTable;
+            case "vec[]":
+                return ParamType.VecTable;
+            case "color[]":
+                return ParamType.ColorTable;
+            case "ref[]":
+                return ParamType.RefTable;
         }
         return ParamType.None;
     }
@@ -290,7 +302,14 @@ public class ABParamFactory
         return param;
     }
 
-    public static IABParam CreateRefParam(String identifier, object[] objects)
+    public static IABParam CreateRefParam(String identifier, Dictionary<string, int> dict)
+    {
+        //ABRefParam param = new ABRefParam(identifier, refVal);
+
+        return null;
+    }
+
+        public static IABParam CreateRefParam(String identifier, object[] objects)
     {
         ABRef refVal = null;
 
@@ -420,7 +439,19 @@ public class ABParamFactory
             }
             ((ABColor)type).Value = color;
         }
-        else
+        else if (field.FieldType == typeof(Dictionary<string, int>))
+        {
+            Dictionary<string, int> dict = (Dictionary<string, int>)field.GetValue(obj);
+            ABRef refType = TypeFactory.CreateEmptyRef();
+            foreach (string key in dict.Keys)
+            {
+                ABScalar scalVal = TypeFactory.CreateEmptyScalar();
+                scalVal.Value = dict[key];
+                refType.SetAttr(key, scalVal);
+            }
+            type = refType;
+        }
+        else if (field.FieldType == typeof(GameObject))
         {
             FieldInfo[] fields = obj.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.NonPublic | BindingFlags.Instance);
             foreach (FieldInfo subField in fields)
@@ -432,6 +463,9 @@ public class ABParamFactory
                     type = CreateRefAttr(field, obj);
                 }
             }
+        } else
+        {
+            throw new NotSupportedException("ABParamFactory " + field.FieldType + " not supported !");
         }
 
         return type;

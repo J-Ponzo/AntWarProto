@@ -11,10 +11,14 @@ public class AgentBehavior : MonoBehaviour
     [SerializeField]
     private string behaviorModelIdentifier;
 
+    [SerializeField]
+    private ActionType curActionType;
+
     /// <summary>
     /// The current Atomic Action being presseced by the agent
     /// </summary>
     private ABAction curAction;
+
 
     public string BehaviorModelIdentifier
     {
@@ -39,6 +43,7 @@ public class AgentBehavior : MonoBehaviour
         set
         {
             curAction = value;
+            curActionType = value.Type;
         }
     }
 

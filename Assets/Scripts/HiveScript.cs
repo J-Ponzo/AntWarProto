@@ -6,12 +6,17 @@ public class HiveScript : MonoBehaviour {
     [AttrName(Identifier = "pos")]
     [SerializeField]
     private Vector2 location;
+    [AttrName(Identifier = "bRes")]
     [SerializeField]
     private float redResAmout;
+    [AttrName(Identifier = "rRes")]
     [SerializeField]
     private float greenResAmout;
+    [AttrName(Identifier = "gRes")]
     [SerializeField]
     private float blueResAmout;
+    [AttrName(Identifier = "population")]
+    private Dictionary<string, int> population = new Dictionary<string, int>();
 
     public float RedResAmout
     {
@@ -49,6 +54,19 @@ public class HiveScript : MonoBehaviour {
         set
         {
             blueResAmout = value;
+        }
+    }
+
+    public Dictionary<string, int> Population
+    {
+        get
+        {
+            return population;
+        }
+
+        set
+        {
+            population = value;
         }
     }
 

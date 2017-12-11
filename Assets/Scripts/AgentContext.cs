@@ -54,14 +54,33 @@ public class AgentContext : MonoBehaviour
     [BindParam(Identifier = "trgPos")]
     [SerializeField]
     public Vector2 targetPt;
-    [BindParam(Identifier = "home")]
+    [BindParam(Identifier = "hive")]
     [SerializeField]
     public GameObject hive;
+    [BindParam(Identifier = "rRes")]
+    [SerializeField]
+    public GameObject[] redResources = new GameObject[0];
+    [BindParam(Identifier = "gRes")]
+    [SerializeField]
+    public GameObject[] greenResources = new GameObject[0];
+    [BindParam(Identifier = "bRes")]
+    [SerializeField]
+    public GameObject[] blueResources = new GameObject[0];
+    [BindParam(Identifier = "enemies")]
+    [SerializeField]
+    public GameObject[] enemies = new GameObject[0];
 
     // Use this for initialization
     void Start()
     {
-
+        AgentEntity agentScript = gameObject.GetComponent<AgentEntity>();
+        if (agentScript.Authority == PlayerAuthority.Player1)
+        {
+            hive = GameManager.instance.P1_hive;
+        } else if (agentScript.Authority == PlayerAuthority.Player2)
+        {
+            hive = GameManager.instance.P2_hive;
+        }
     }
 
     // Update is called once per frame

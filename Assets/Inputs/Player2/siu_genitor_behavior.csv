@@ -16,7 +16,7 @@ Transitions,Start State,End State
 Syntax Tree,output,
 0,0,
 Nodes,Type,output (Node -> Input)
-0,operator{>},
+0,operator{B>SS},
 1,param{const scal=20},0->1
 2,operator{S+SS},0->0
 3,operator{SgetRT},2->0
@@ -33,7 +33,7 @@ Nodes,Type,output (Node -> Input)
 Syntax Tree,output,
 0,2,
 Nodes,Type,output (Node -> Input)
-0,operator{>},
+0,operator{B>SS},
 1,operator{SgetRT},0->0
 2,operator{SgetRT},0->1
 3,operator{RgetRT},1->0

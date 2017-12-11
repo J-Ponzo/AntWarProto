@@ -7,6 +7,8 @@ public class AgentEntity : MonoBehaviour
     [SerializeField]
     private int id;
     [SerializeField]
+    private PlayerAuthority authority;
+    [SerializeField]
     private AgentBehavior behaviour;
     [SerializeField]
     private AgentContext context;
@@ -47,6 +49,19 @@ public class AgentEntity : MonoBehaviour
         set
         {
             id = value;
+        }
+    }
+
+    public PlayerAuthority Authority
+    {
+        get
+        {
+            return authority;
+        }
+
+        set
+        {
+            authority = value;
         }
     }
 

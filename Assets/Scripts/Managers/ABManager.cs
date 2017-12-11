@@ -91,11 +91,25 @@ public class ABManager : MonoBehaviour {
         ABModel model = FindABModel(agent.Behaviour.BehaviorModelIdentifier);
         if (model == null)
         {
-            model = LoadABModelFromFile(INPUTS_FOLDER_PATH + agent.Behaviour.BehaviorModelIdentifier + ".csv");
+            model = LoadABModelFromFile(GameManager.instance.INPUTS_FOLDER_PATH
+                + GetInputSubFolder(agent)
+                + agent.Behaviour.BehaviorModelIdentifier
+                + ".csv");
         }
         ABInstance instance = CreateABInstanceFromModel(model);
         instance.AgentId = agent.Id;
         instances.Add(instance);
+    }
+
+    private static string GetInputSubFolder(AgentEntity agent)
+    {
+        string subFolder = GameManager.instance.PLAYER1_SPECIE_FOLDER;
+        if (agent.Authority == PlayerAuthority.Player2)
+        {
+            subFolder = GameManager.instance.PLAYER2_SPECIE_FOLDER;
+        }
+
+        return subFolder;
     }
 
     private ABModel LoadABModelFromFile(string path)
@@ -200,7 +214,7 @@ public class ABManager : MonoBehaviour {
             }
             else
             {
-                param = ABParamFactory.CreateRefParam(identifier, null);
+                param = ABParamFactory.CreateRefParam(identifier, (MonoBehaviour[])null);
             }
         }
         else if (field.FieldType == typeof(bool[]))
