@@ -49,10 +49,31 @@ public class ABManager : MonoBehaviour {
 	void Update () {
 		foreach (AgentEntity agent in agents)
         {
+            // Compute Action
             ABInstance instance = FindABInstance(agent.Id);
             ABContext context = CreateABContextFromAgentContext(agent.Context);
             ABAction action = processor.ProcessABInstance(instance, context);
             agent.Behaviour.CurAction = action;
+
+            //Compute Action Parameters
+            List<IABType> actionParams = new List<IABType>();
+            for (int i = 0; i < action.Parameters.Length; i++)
+            {
+                if (action.Parameters[i] is AB_TxtGate_Operator)
+                {
+                    IABType param = 
+                        ((AB_TxtGate_Operator)action.Parameters[i]).Evaluate(context);
+                    actionParams.Add(param);
+                }
+                else if (action.Parameters[i] is AB_VecGate_Operator)
+                {
+                    IABType param =
+                        ((AB_VecGate_Operator)action.Parameters[i]).Evaluate(context);
+                    actionParams.Add(param);
+                }
+            }
+
+            agent.Behaviour.CurActionParams = actionParams.ToArray();
         }
 	}
 

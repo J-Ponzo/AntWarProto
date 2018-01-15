@@ -73,6 +73,9 @@ public class AgentContext : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        location = new Vector3(transform.position.x, transform.position.z);
+        targetPt = location;
+
         AgentEntity agentScript = gameObject.GetComponent<AgentEntity>();
         if (agentScript.Authority == PlayerAuthority.Player1)
         {
@@ -86,6 +89,6 @@ public class AgentContext : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        location = new Vector3(transform.position.x, transform.position.z);
     }
 }

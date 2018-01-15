@@ -22,6 +22,9 @@ GameObject:
   - component: {fileID: 114743776689603538}
   - component: {fileID: 114557014208587398}
   - component: {fileID: 114238049092781280}
+  - component: {fileID: 114973090759279900}
+  - component: {fileID: 114662239543177926}
+  - component: {fileID: 114892884380249330}
   - component: {fileID: 33639599402962088}
   - component: {fileID: 23608124313498414}
   m_Layer: 0
@@ -95,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behaviorModelIdentifier: 
+  curActionType: 0
 --- !u!114 &114557014208587398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,6 +115,26 @@ MonoBehaviour:
   location: {x: 0, y: 0}
   targetPt: {x: 0, y: 0}
   hive: {fileID: 0}
+  redResources: []
+  greenResources: []
+  blueResources: []
+  enemies: []
+--- !u!114 &114662239543177926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1618866709941296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 421b1eed0d7d22b49b9b508d4eef1287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 0
+  path: []
+  color:
+    serializedVersion: 2
+    rgba: 0
 --- !u!114 &114743776689603538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,5 +147,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  authority: 0
   behaviour: {fileID: 0}
   context: {fileID: 0}
+--- !u!114 &114892884380249330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1618866709941296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7b8ffbe3a367e24b9bcde3306503efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 0
+  castName: 
+--- !u!114 &114973090759279900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1618866709941296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef0748f289c07441b9bcd7621a32ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 0
+  path: []
