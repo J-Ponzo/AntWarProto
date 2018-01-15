@@ -22,6 +22,7 @@ public class AB_Vec_RandCircle_Vec_Scal_Operator : ABOperator<ABVec>
         //Randomize point
         Random random = new Random();
         float teta = ((float) random.NextDouble()) * 2f * (float) Math.PI;
+        teta -= (float)Math.PI;
 
         //Return
         ABVec result = TypeFactory.CreateEmptyVec();

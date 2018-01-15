@@ -40,7 +40,7 @@ public class GotoAction : MonoBehaviour {
             agentContext.targetPt = path[0];
         }
 
-        if (Vector3.Distance(agentContext.targetPt, agentContext.location) < 0.01f)
+        if (Vector3.Distance(agentContext.targetPt, agentContext.location) < 0.1f)
         {
             this.transform.position = new Vector3(
                 agentContext.targetPt.x, 0f, agentContext.targetPt.y);
@@ -48,7 +48,7 @@ public class GotoAction : MonoBehaviour {
         else
         {
             Vector3 dir = (agentContext.targetPt - agentContext.location).normalized;
-            float speed = 1f;
+            float speed = 5f;
             this.transform.position +=
                 Time.deltaTime * speed * new Vector3(dir.x, 0f, dir.y);
         }
