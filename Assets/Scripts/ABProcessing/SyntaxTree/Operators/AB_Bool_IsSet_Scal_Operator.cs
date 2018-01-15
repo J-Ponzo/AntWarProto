@@ -2,11 +2,24 @@
 {
     public AB_Bool_IsSet_Scal_Operator()
     {
-        throw new System.NotImplementedException();
+
+        this.Inputs = new ABNode[1];
     }
 
     public override ABBool Evaluate(ABContext context)
     {
-        throw new System.NotImplementedException();
+        ABScalar t1 = null;
+        ABNode input1 = Inputs[0];
+        t1 = OperatorHelper.Instance.getScalarParam(context, input1);
+
+        ABBool result = TypeFactory.CreateEmptyBool();
+        if (t1 != null) {
+            result.Value = true;
+        }
+        else {
+            result.Value = false;
+        }
+        //result.Value = s1.Value + s2.Value;
+        return result;
     }
 }
