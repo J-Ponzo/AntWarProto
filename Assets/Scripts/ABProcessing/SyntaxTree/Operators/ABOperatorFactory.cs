@@ -234,7 +234,7 @@ public class ABOperatorFactory {
                 type = OperatorType.Vec_Cross_Vec_Vec;
                 break;
             case "S.VV":
-                type = OperatorType.Vec_Dot_Vec_Vec;
+                type = OperatorType.Scal_Dot_Vec_Vec;
                 break;
             case "B==VV":
                 type = OperatorType.Bool_Equals_Vec_Vec;
@@ -494,7 +494,7 @@ public class ABOperatorFactory {
             case OperatorType.Vec_Cross_Vec_Vec:
                 abOperator = new AB_Vec_Cross_Vec_Vec_Operator();
                 break;
-            case OperatorType.Vec_Dot_Vec_Vec:
+            case OperatorType.Scal_Dot_Vec_Vec:
                 abOperator = new AB_Scal_Dot_Vec_Vec_Operator();
                 break;
             case OperatorType.Bool_Equals_Vec_Vec:

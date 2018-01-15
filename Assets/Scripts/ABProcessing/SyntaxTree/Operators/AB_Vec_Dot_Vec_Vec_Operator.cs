@@ -20,11 +20,11 @@
 
         //Return
         ABScalar result = TypeFactory.CreateEmptyScalar();
-        ABScalar resultX = TypeFactory.CreateEmptyScalar();
-        ABScalar resultY = TypeFactory.CreateEmptyScalar();
-        resultX.Value = v1.X * v2.X;
-        resultY.Value = v1.Y * v2.Y;
-        result.Value = resultX.Value + resultY.Value;
+        float resultX;
+        float resultY;
+        resultX = v1.X * v2.X;
+        resultY = v1.Y * v2.Y;
+        result.Value = resultX + resultY;
         return result;
     }
 }

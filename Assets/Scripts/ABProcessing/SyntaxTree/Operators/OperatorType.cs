@@ -77,7 +77,7 @@ public enum OperatorType
     Scal_Size_TxtTab,
     VecTab_Agg_VecStar,
     Vec_Cross_Vec_Vec,
-    Vec_Dot_Vec_Vec,
+    Scal_Dot_Vec_Vec,
     Bool_Equals_Vec_Vec,
     Vec_Get_Ref_Txt,
     VecTab_Get_RefTab_Txt,

@@ -80,6 +80,43 @@ public class OperatorHelper : MonoBehaviour
         return tab;
     }
 
+    public ABTable<ABBool> getTabBoolParam(ABContext context, ABNode input) {
+        ABTable<ABBool> tab = null;
+
+        if (input is ABOperator<ABTable<ABBool>>) {
+            ABOperator<ABTable<ABBool>> abOperator = (ABOperator<ABTable<ABBool>>)input;
+            tab = abOperator.Evaluate(context);
+        }
+        else if (input is ABParam<ABTable<ABBool>>) {
+            ABParam<ABTable<ABBool>> param = (ABParam<ABTable<ABBool>>)input;
+            tab = param.Evaluate(context);
+        }
+        else {
+            throw new System.NotSupportedException();
+        }
+
+        return tab;
+    }
+
+
+    public ABTable<ABColor> getTabColorParam(ABContext context, ABNode input) {
+        ABTable<ABColor> tab = null;
+
+        if (input is ABOperator<ABTable<ABColor>>) {
+            ABOperator<ABTable<ABColor>> abOperator = (ABOperator<ABTable<ABColor>>)input;
+            tab = abOperator.Evaluate(context);
+        }
+        else if (input is ABParam<ABTable<ABColor>>) {
+            ABParam<ABTable<ABColor>> param = (ABParam<ABTable<ABColor>>)input;
+            tab = param.Evaluate(context);
+        }
+        else {
+            throw new System.NotSupportedException();
+        }
+
+        return tab;
+    }
+
     public ABTable<ABVec> getTabVecParam(ABContext context, ABNode input)
     {
         ABTable<ABVec> tab = null;
