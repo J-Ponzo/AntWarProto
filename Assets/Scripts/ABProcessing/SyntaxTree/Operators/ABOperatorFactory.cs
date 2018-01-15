@@ -495,7 +495,7 @@ public class ABOperatorFactory {
                 abOperator = new AB_Vec_Cross_Vec_Vec_Operator();
                 break;
             case OperatorType.Vec_Dot_Vec_Vec:
-                abOperator = new AB_Vec_Dot_Vec_Vec_Operator();
+                abOperator = new AB_Scal_Dot_Vec_Vec_Operator();
                 break;
             case OperatorType.Bool_Equals_Vec_Vec:
                 abOperator = new AB_Bool_Equals_Vec_Vec_Operator();
