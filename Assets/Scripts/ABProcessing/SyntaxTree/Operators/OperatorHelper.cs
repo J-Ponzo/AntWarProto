@@ -160,6 +160,24 @@ public class OperatorHelper : MonoBehaviour
         return tab;
     }
 
+    public ABTable<ABText> getTabTxtParam(ABContext context, ABNode input) 
+    {
+        ABTable<ABText> tab = null;
+        if (input is ABOperator<ABTable<ABText>>) {
+            ABOperator<ABTable<ABText>> abOperator = (ABOperator<ABTable<ABText>>)input;
+            tab = abOperator.Evaluate(context);
+        }
+        else if (input is ABParam<ABTable<ABText>>) {
+            ABParam<ABTable<ABText>> param = (ABParam<ABTable<ABText>>)input;
+            tab = param.Evaluate(context);
+        }
+        else {
+            throw new System.NotSupportedException();
+        }
+
+        return tab;
+    }
+
 
     // NOT TESTED YET
     public ABRef getRefParam(ABContext context, ABNode input)
