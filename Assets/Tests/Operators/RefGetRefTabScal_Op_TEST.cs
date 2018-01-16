@@ -37,7 +37,7 @@ class RefGetRefTabScal_Op_TEST : MonoBehaviour{
         ABRef testValue = new ABRef();
         testValue = ope.Evaluate(ctx);
         ABRef expected = new ABRef();
-        expected = tab[(int)r2.Value];
+        //TODO   expected = tab[(int)r2.Value];
         if (testValue == expected) {
             Debug.Log(this.GetType().Name + " OK");
         }
