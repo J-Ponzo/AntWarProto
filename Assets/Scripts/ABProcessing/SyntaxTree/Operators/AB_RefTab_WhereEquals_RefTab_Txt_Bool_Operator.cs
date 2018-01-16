@@ -2,11 +2,37 @@
 {
     public AB_RefTab_WhereEquals_RefTab_Txt_Bool_Operator()
     {
-        throw new System.NotImplementedException();
+
+        this.Inputs = new ABNode[3];
     }
 
     public override ABTable<ABRef> Evaluate(ABContext context)
     {
-        throw new System.NotImplementedException();
+        //Get s1
+        ABTable<ABRef> tab = null;
+        ABNode input1 = Inputs[0];
+        tab = OperatorHelper.Instance.getTabRefParam(context, input1);
+
+        //Get s2
+        ABText text = null;
+        ABNode input2 = Inputs[1];
+        text = OperatorHelper.Instance.getTextParam(context, input2);
+
+        //Get s2
+        ABBool b1 = null;
+        ABNode input3 = Inputs[2];
+        b1 = OperatorHelper.Instance.getBoolParam(context, input3);
+
+        //Return
+        ABTable<ABRef> result = TypeFactory.CreateEmptyTable<ABRef>();
+
+        for(int i = 0; i < tab.Values.Length; i++) {
+
+            if (tab.Values[i].GetAttr(text.Value) != null && tab.Values[i].GetAttr(text.Value) == b1) {
+                result.Values[i] = tab.Values[i];
+            }
+        }
+
+        return result;
     }
 }
