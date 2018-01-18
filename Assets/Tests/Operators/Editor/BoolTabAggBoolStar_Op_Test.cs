@@ -13,17 +13,17 @@ public class BoolTabAggBoolStar_Op_Test {
 	/// </summary>
 	/// <returns>The operator</returns>
 	/// <param name="param">Parameters that will compose the operator</param>
-	private AB_BoolTab_Agg_BoolStar_Operator getOperator( params object[] parameters ){
+	private AB_BoolTab_Agg_BoolStar_Operator getOperator( ABContext ctx, params object[] parameters ){
 
 		// Generate a list of ABParams based on the params
 		ABParam<ABBool>[] listParams = new ABParam<ABBool>[ parameters.Length ];
 		for( int i = 0; i < parameters.Length; i++ ){
 			bool argParam = (bool)parameters[i];
-			listParams[i] = ABParamFactory.CreateBoolParam( "const", argParam );
+			listParams[i] = ABParamFactory.CreateBoolParam( "const"+i.ToString(), argParam );
 		}
 
 		// Create an operator and associates it to the params
-		return Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, listParams );
+		return Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, ctx, listParams );
 	}
 
 	/// <summary>
@@ -31,12 +31,12 @@ public class BoolTabAggBoolStar_Op_Test {
 	/// </summary>
 	/// <returns>The AB parameter tab from array.</returns>
 	/// <param name="parameters">Parameters.</param>
-	private ABNode getABParamTab_fromArray( params object[] parameters ){
+	private ABNode getABParamTab_fromArray( string paramName, params object[] parameters ){
 		bool[] table = new bool[parameters.Length];
 		for( int i = 0; i < parameters.Length; i++ ){
 			table[i] = (bool)parameters[i];
 		}
-		return (ABNode)ABParamFactory.CreateBoolTableParam( "table", table );
+		return (ABNode)ABParamFactory.CreateBoolTableParam( paramName, table );
 	}
 
 	#region TESTS
@@ -47,9 +47,10 @@ public class BoolTabAggBoolStar_Op_Test {
 		bool arg1 = true;
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = getOperator( arg1 );
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = getOperator( ctx, arg1 );
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
@@ -63,9 +64,10 @@ public class BoolTabAggBoolStar_Op_Test {
 		bool arg1 = false;
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = getOperator( arg1 );
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = getOperator( ctx, arg1 );
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
@@ -80,9 +82,10 @@ public class BoolTabAggBoolStar_Op_Test {
 		bool arg2 = false;
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = getOperator( arg1 );
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = getOperator( ctx, arg1, arg2 );
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
@@ -93,12 +96,14 @@ public class BoolTabAggBoolStar_Op_Test {
 	public void Test_array01() {
 		// Test values
 		bool[] expected = {true,false};
-		ABNode arg1 = getABParamTab_fromArray( true, false );
+		ABNode arg1 = getABParamTab_fromArray( "tab1", true, false );
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, arg1 );
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, ctx, arg1 );
+
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
@@ -109,13 +114,14 @@ public class BoolTabAggBoolStar_Op_Test {
 	public void Test_array02() {
 		// Test values
 		bool[] expected = {true,false,false,true};
-		ABNode arg1 = getABParamTab_fromArray( true, false );
-		ABNode arg2 = getABParamTab_fromArray( false, true );
+		ABNode arg1 = getABParamTab_fromArray( "tab1", true, false );
+		ABNode arg2 = getABParamTab_fromArray( "tab2", false, true );
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, arg1, arg2 );
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, ctx, arg1, arg2 );
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
@@ -126,13 +132,14 @@ public class BoolTabAggBoolStar_Op_Test {
 	public void Test_array03() {
 		// Test values
 		bool[] expected = {true,false};
-		ABNode arg1 = getABParamTab_fromArray( true );
+		ABNode arg1 = getABParamTab_fromArray( "tab1", true );
 		ABNode arg2 = ABParamFactory.CreateBoolParam( "const", false );
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, arg1, arg2 );
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, ctx, arg1, arg2 );
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
@@ -144,12 +151,13 @@ public class BoolTabAggBoolStar_Op_Test {
 		// Test values
 		bool[] expected = {true,false};
 		ABNode arg1 = ABParamFactory.CreateBoolParam( "const", true );
-		ABNode arg2 = getABParamTab_fromArray( false );
+		ABNode arg2 = getABParamTab_fromArray( "tab1", false );
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, arg1, arg2 );
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, ctx, arg1, arg2 );
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
@@ -162,9 +170,10 @@ public class BoolTabAggBoolStar_Op_Test {
 		bool[] expected = {};
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = getOperator();
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = getOperator( ctx );
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
@@ -176,12 +185,13 @@ public class BoolTabAggBoolStar_Op_Test {
 		// Test values
 		bool[] expected = {};
 		// empty array
-		ABNode arg1 = getABParamTab_fromArray();
+		ABNode arg1 = getABParamTab_fromArray("tab1");
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, arg1 );
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, ctx, arg1 );
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
@@ -195,12 +205,13 @@ public class BoolTabAggBoolStar_Op_Test {
 		// bool
 		ABNode arg1 = ABParamFactory.CreateBoolParam( "const", true );
 		// empty array
-		ABNode arg2 = getABParamTab_fromArray();
+		ABNode arg2 = getABParamTab_fromArray("tab1");
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, arg1, arg2 );
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, ctx, arg1, arg2 );
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
@@ -212,14 +223,15 @@ public class BoolTabAggBoolStar_Op_Test {
 		// Test values
 		bool[] expected = {true};
 		// bool[]
-		ABNode arg1 = getABParamTab_fromArray( true );
+		ABNode arg1 = getABParamTab_fromArray( "tab1", true );
 		// empty array
-		ABNode arg2 = getABParamTab_fromArray();
+		ABNode arg2 = getABParamTab_fromArray( "tab2" );
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, arg1, arg2 );
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, ctx, arg1, arg2 );
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
@@ -234,9 +246,10 @@ public class BoolTabAggBoolStar_Op_Test {
 		ABNode arg1 = null;
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, arg1 );
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, ctx, arg1 );
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
@@ -253,9 +266,10 @@ public class BoolTabAggBoolStar_Op_Test {
 		ABNode arg2 = null;
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, arg1, arg2 );
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, ctx, arg1, arg2 );
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
@@ -267,14 +281,15 @@ public class BoolTabAggBoolStar_Op_Test {
 		// Test values
 		bool[] expected = {true};
 		// bool[]
-		ABNode arg1 = getABParamTab_fromArray( true );
+		ABNode arg1 = getABParamTab_fromArray( "tab1", true );
 		// null
 		ABNode arg2 = null;
 
 		// Create operator
-		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, arg1, arg2 );
+		ABContext ctx = new ABContext();
+		AB_BoolTab_Agg_BoolStar_Operator ope = Operator_Test<AB_BoolTab_Agg_BoolStar_Operator>.getOperator_ABParams( symbol, ctx, arg1, arg2 );
 		// Test operator
-		ABBool[] result = ope.Evaluate( null ).Values;
+		ABBool[] result = ope.Evaluate( ctx ).Values;
 		Assert.AreEqual( expected.Length, result.Length );
 		for( int i = 0; i < expected.Length; i++ ){
 			Assert.AreEqual( expected[i], result[i].Value );
