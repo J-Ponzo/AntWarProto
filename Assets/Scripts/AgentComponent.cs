@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,6 +62,10 @@ public class AgentComponent : MonoBehaviour {
     private float heatRange;
     [SerializeField]
     private float smellRange;
+
+    //Not handled
+    [SerializeField]
+    private List<String> notHandledTokens = new List<String>();
 
     // Use this for initialization
     void Start () {

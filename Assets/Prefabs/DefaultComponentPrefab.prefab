@@ -53,6 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   name: 
+  color:
+    serializedVersion: 2
+    rgba: 0
   prodCost: 0
   buyCost: 0
   moveSpeedBuff: 0

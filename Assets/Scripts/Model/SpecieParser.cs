@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class SpecieParser
 {
@@ -55,14 +56,14 @@ public class SpecieParser
         {
             if (tokens[i] == "") break;
             int id = int.Parse(tokens[i]);
-            CastComponent component = ComponentFactory.CreateComponent(id);
+            AgentComponent component = ComponentFactory.CreateComponent(id);
             cast.Head.Add(component);
         }
         for (int i = headSize + 3; i < tokens.Length; i++)
         {
             if (tokens[i] == "") break;
             int id = int.Parse(tokens[i]);
-            CastComponent component = 
+            AgentComponent component = 
                 ComponentFactory.CreateComponent(id);
             cast.Tail.Add(component);
         }

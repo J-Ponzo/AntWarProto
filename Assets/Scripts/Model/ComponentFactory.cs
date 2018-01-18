@@ -2,9 +2,9 @@
 
 public class ComponentFactory {
 
-    public static CastComponent CreateComponent(int id)
+    public static AgentComponent CreateComponent(int id)
     {
-        CastComponent component = new CastComponent();
+        AgentComponent component = new AgentComponent();
         return component;
     }
 }
