@@ -23,11 +23,11 @@
         for (int i = 0; i < tab.Values.Length; i++) {
             if(((ABText)tab.Values[i].GetAttr(text.Value)).Value == text.Value) {
 
-                result.Values[i].Value = text.Value;
+                //result.Values[i].Value = text.Value;
             }
         }
         
-        result.Value = length;
+       // result.Value = length;
         return result;
     }
 }
