@@ -1,12 +1,30 @@
-﻿public class AB_Bool_Get_Ref_Txt_Operator : ABOperator<ABBool>
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AB_Bool_Get_Ref_Txt_Operator : ABOperator<ABBool>
 {
     public AB_Bool_Get_Ref_Txt_Operator()
     {
-        throw new System.NotImplementedException();
+		this.Inputs = new ABNode[2];
     }
 
     public override ABBool Evaluate(ABContext context)
     {
-        throw new System.NotImplementedException();
+		//Get s1
+		ABNode input1 = Inputs[0];
+		ABRef s1 = OperatorHelper.Instance.getRefParam(context, input1);
+
+		//Get s2
+		ABNode input2 = Inputs[1];
+		ABText s2 = OperatorHelper.Instance.getTextParam(context, input2);
+
+		//Return
+		ABBool result = TypeFactory.CreateEmptyBool();
+		ABBool call = ((ABBool)s1.GetAttr( s2.Value ));
+		if( call != null ){
+			result.Value = call.Value;
+		}
+		return result;
     }
 }
