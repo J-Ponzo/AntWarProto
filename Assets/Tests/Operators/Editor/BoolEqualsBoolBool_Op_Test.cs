@@ -4,17 +4,16 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 
-public class BoolAndBoolBool_Op_Test {
+public class BoolEqualsBoolBool_Op_Test {
 
-	private string symbol = "B&&BB";
-	private int nbTests = 100;
+	private string symbol = "B==BB";
 
 	/// <summary>
 	/// Create an operator based on the list of parameters (correct type)
 	/// </summary>
 	/// <returns>The operator</returns>
 	/// <param name="param">Parameters that will compose the operator</param>
-	private AB_Bool_And_Bool_Bool_Operator getOperator( params object[] parameters ){
+	private AB_Bool_Equals_Bool_Bool_Operator getOperator( params object[] parameters ){
 
 		// Generate a list of ABParams based on the params
 		ABParam<ABBool>[] listParams = new ABParam<ABBool>[ parameters.Length ];
@@ -29,7 +28,7 @@ public class BoolAndBoolBool_Op_Test {
 		}
 
 		// Create an operator and associates it to the params
-		return Operator_Test<AB_Bool_And_Bool_Bool_Operator>.getOperator_ABParams( symbol, listParams );
+		return Operator_Test<AB_Bool_Equals_Bool_Bool_Operator>.getOperator_ABParams( symbol, listParams );
 	}
 
 	#region TESTS
@@ -41,7 +40,7 @@ public class BoolAndBoolBool_Op_Test {
 		bool arg2 = true;
 
 		// Create operator
-		AB_Bool_And_Bool_Bool_Operator ope = getOperator( arg1, arg2 );
+		AB_Bool_Equals_Bool_Bool_Operator ope = getOperator( arg1, arg2 );
 		// Test operator
 		Assert.AreEqual( expected, ope.Evaluate( null ).Value );
 	}
@@ -54,7 +53,7 @@ public class BoolAndBoolBool_Op_Test {
 		bool arg2 = true;
 
 		// Create operator
-		AB_Bool_And_Bool_Bool_Operator ope = getOperator( arg1, arg2 );
+		AB_Bool_Equals_Bool_Bool_Operator ope = getOperator( arg1, arg2 );
 		// Test operator
 		Assert.AreEqual( expected, ope.Evaluate( null ).Value );
 	}
@@ -67,7 +66,7 @@ public class BoolAndBoolBool_Op_Test {
 		bool arg2 = false;
 
 		// Create operator
-		AB_Bool_And_Bool_Bool_Operator ope = getOperator( arg1, arg2 );
+		AB_Bool_Equals_Bool_Bool_Operator ope = getOperator( arg1, arg2 );
 		// Test operator
 		Assert.AreEqual( expected, ope.Evaluate( null ).Value );
 	}
@@ -75,12 +74,12 @@ public class BoolAndBoolBool_Op_Test {
 	[Test]
 	public void Test_basic04() {
 		// Test values
-		bool expected = false;
+		bool expected = true;
 		bool arg1 = false;
 		bool arg2 = false;
 
 		// Create operator
-		AB_Bool_And_Bool_Bool_Operator ope = getOperator( arg1, arg2 );
+		AB_Bool_Equals_Bool_Bool_Operator ope = getOperator( arg1, arg2 );
 		// Test operator
 		Assert.AreEqual( expected, ope.Evaluate( null ).Value );
 	}
@@ -89,7 +88,7 @@ public class BoolAndBoolBool_Op_Test {
 	public void Test_emptyArgs() {
 		try{
 			// Create operator
-			AB_Bool_And_Bool_Bool_Operator ope = getOperator();
+			AB_Bool_Equals_Bool_Bool_Operator ope = getOperator();
 			ope.Evaluate( null );
 		}
 		catch( System.Exception ){
@@ -106,7 +105,7 @@ public class BoolAndBoolBool_Op_Test {
 		bool arg2 = true;
 
 		try{
-			AB_Bool_And_Bool_Bool_Operator ope = getOperator( null, arg2 );
+			AB_Bool_Equals_Bool_Bool_Operator ope = getOperator( null, arg2 );
 			ope.Evaluate( null );
 		}
 		catch( System.Exception ){
@@ -123,7 +122,7 @@ public class BoolAndBoolBool_Op_Test {
 		bool arg1 = true;
 
 		try{
-			AB_Bool_And_Bool_Bool_Operator ope = getOperator( arg1, null );
+			AB_Bool_Equals_Bool_Bool_Operator ope = getOperator( arg1, null );
 			ope.Evaluate( null );
 		}
 		catch( System.Exception ){

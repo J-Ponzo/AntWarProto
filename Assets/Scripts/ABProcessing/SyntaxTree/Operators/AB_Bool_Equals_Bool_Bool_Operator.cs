@@ -19,7 +19,7 @@
 
         //Return
         ABBool result = TypeFactory.CreateEmptyBool();
-        result.Value = s1.Value = s2.Value;
+        result.Value = s1.Value == s2.Value;
         return result;
     }
 }
