@@ -96,9 +96,9 @@ public class BoolEqualsBoolBool_Op_Test {
 			AB_Bool_Equals_Bool_Bool_Operator ope = getOperator( ctx );
 			ope.Evaluate( ctx );
 		}
-		catch( System.Exception ){
+		catch( System.Exception ex ){
 			// If an exception occurs, the test is succeeded
-			Assert.Pass();
+			Assert.Pass( ex.Message );
 		}
 		// If an exception does occur, the test is failed
 		Assert.Fail();
@@ -114,9 +114,9 @@ public class BoolEqualsBoolBool_Op_Test {
 			AB_Bool_Equals_Bool_Bool_Operator ope = getOperator( ctx, null, arg2 );
 			ope.Evaluate( ctx );
 		}
-		catch( System.Exception ){
+		catch( System.Exception ex ){
 			// If an exception occurs, the test is succeeded
-			Assert.Pass();
+			Assert.Pass( ex.Message );
 		}
 		// If an exception does occur, the test is failed
 		Assert.Fail();
@@ -132,9 +132,9 @@ public class BoolEqualsBoolBool_Op_Test {
 			AB_Bool_Equals_Bool_Bool_Operator ope = getOperator( ctx, arg1, null );
 			ope.Evaluate( ctx );
 		}
-		catch( System.Exception ){
+		catch( System.Exception ex ){
 			// If an exception occurs, the test is succeeded
-			Assert.Pass();
+			Assert.Pass( ex.Message );
 		}
 		// If an exception does occur, the test is failed
 		Assert.Fail();

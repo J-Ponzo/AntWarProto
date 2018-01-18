@@ -19,15 +19,14 @@ public class AB_Bool_Get_Ref_Txt_Operator : ABOperator<ABBool>
 		ABNode input2 = Inputs[1];
 		ABText s2 = OperatorHelper.Instance.getTextParam(context, input2);
 
-		//Return
-		ABBool result = TypeFactory.CreateEmptyBool();
-
 		if( s1 == null || s2 == null ){
 			throw new System.ArgumentNullException();
 		}
+
 		ABBool call = ((ABBool)s1.GetAttr( s2.Value ));
 
 		if( call != null ){
+			ABBool result = TypeFactory.CreateEmptyBool();
 			result.Value = call.Value;
 			return result;
 		}

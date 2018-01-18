@@ -101,8 +101,7 @@ public class BoolGetRefTxt_Op_Test {
 		}
 		catch( System.Exception ex ){
 			// If an exception occurs, the test is succeeded
-			UnityEngine.Debug.LogAssertion( ex.Message );
-			Assert.Pass();
+			Assert.Pass( ex.Message );
 		}
 		// If an exception does occur, the test is failed
 		Assert.Fail();
@@ -124,8 +123,7 @@ public class BoolGetRefTxt_Op_Test {
 		}
 		catch( System.Exception ex ){
 			// If an exception occurs, the test is succeeded
-			UnityEngine.Debug.LogAssertion( ex.Message );
-			Assert.Pass();
+			Assert.Pass( ex.Message );
 		}
 		// If an exception does occur, the test is failed
 		Assert.Fail();
@@ -145,8 +143,7 @@ public class BoolGetRefTxt_Op_Test {
 		}
 		catch( System.Exception ex ){
 			// If an exception occurs, the test is succeeded
-			UnityEngine.Debug.LogAssertion( ex.Message );
-			Assert.Pass();
+			Assert.Pass( ex.Message );
 		}
 		// If an exception does occur, the test is failed
 		Assert.Fail();
@@ -166,8 +163,7 @@ public class BoolGetRefTxt_Op_Test {
 		}
 		catch( System.Exception ex ){
 			// If an exception occurs, the test is succeeded
-			UnityEngine.Debug.LogAssertion( ex.Message );
-			Assert.Pass();
+			Assert.Pass( ex.Message );
 		}
 		// If an exception does occur, the test is failed
 		Assert.Fail();
@@ -185,8 +181,7 @@ public class BoolGetRefTxt_Op_Test {
 		}
 		catch( System.Exception ex ){
 			// If an exception occurs, the test is succeeded
-			UnityEngine.Debug.LogAssertion( ex.Message );
-			Assert.Pass();
+			Assert.Pass( ex.Message );
 		}
 		// If an exception does occur, the test is failed
 		Assert.Fail();
@@ -206,8 +201,7 @@ public class BoolGetRefTxt_Op_Test {
 		}
 		catch( System.Exception ex ){
 			// If an exception occurs, the test is succeeded
-			UnityEngine.Debug.LogAssertion( ex.Message );
-			Assert.Pass();
+			Assert.Pass( ex.Message );
 		}
 		// If an exception does occur, the test is failed
 		Assert.Fail();
@@ -229,8 +223,7 @@ public class BoolGetRefTxt_Op_Test {
 		}
 		catch( System.Exception ex ){
 			// If an exception occurs, the test is succeeded
-			UnityEngine.Debug.LogAssertion( ex.Message );
-			Assert.Pass();
+			Assert.Pass( ex.Message );
 		}
 		// If an exception does occur, the test is failed
 		Assert.Fail();
@@ -251,8 +244,7 @@ public class BoolGetRefTxt_Op_Test {
 		}
 		catch( System.Exception ex ){
 			// If an exception occurs, the test is succeeded
-			UnityEngine.Debug.LogAssertion( ex.Message );
-			Assert.Pass();
+			Assert.Pass( ex.Message );
 		}
 		// If an exception does occur, the test is failed
 		Assert.Fail();
