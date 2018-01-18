@@ -28,7 +28,7 @@
 
         for(int i = 0; i < tab.Values.Length; i++) {
 
-            if (tab.Values[i].GetAttr(text.Value) != null && tab.Values[i].GetAttr(text.Value) == b1) {
+            if (tab.Values[i].GetAttr(text.Value) != null && ((ABBool) tab.Values[i].GetAttr(text.Value)).Value == b1.Value) {
                 result.Values[i] = tab.Values[i];
             }
         }

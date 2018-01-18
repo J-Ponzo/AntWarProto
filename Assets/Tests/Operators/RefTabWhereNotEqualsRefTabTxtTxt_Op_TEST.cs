@@ -38,7 +38,7 @@ class RefTabWhereNotEqualsRefTabTxtTxt_Op_TEST : MonoBehaviour{
         ABRef[] expected = null;
 
         for (int i = 0; i < tabRef1.Value.Values.Length; i++) {
-            if (tabRef1.Value.Values[i].GetAttr(r2) != null && tabRef1.Value.Values[i].GetAttr(arg2.Value.Value) != arg3.Value) {
+            if (tabRef1.Value.Values[i].GetAttr(r2) != null && ((ABText)tabRef1.Value.Values[i].GetAttr(arg2.Value.Value)).Value != arg3.Value.Value) {
                 expected.SetValue(tabRef1.Value.Values[i], i);
             }
         }

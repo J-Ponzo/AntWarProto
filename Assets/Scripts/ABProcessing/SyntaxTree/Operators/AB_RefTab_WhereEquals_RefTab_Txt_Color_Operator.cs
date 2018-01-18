@@ -31,7 +31,7 @@ public class AB_RefTab_WhereEquals_RefTab_Txt_Color_Operator : ABOperator<ABTabl
 
         for (int i = 0; i < tab.Values.Length; i++) {
 
-            if (tab.Values[i].GetAttr(text.Value) != null && tab.Values[i].GetAttr(text.Value) == b1) {
+            if (tab.Values[i].GetAttr(text.Value) != null && ((ABColor)tab.Values[i].GetAttr(text.Value)).Value == b1.Value) {
                 result.Values[i] = tab.Values[i];
             }
         }

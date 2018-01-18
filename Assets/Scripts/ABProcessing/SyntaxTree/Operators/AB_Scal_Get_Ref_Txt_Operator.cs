@@ -10,30 +10,13 @@
         //Get ref
         ABRef reference = null;
         ABNode input1 = Inputs[0];
-        if (input1 is ABOperator<ABRef>)
-        {
-            ABOperator<ABRef> abOperator = (ABOperator<ABRef>)input1;
-            reference = abOperator.Evaluate(context);
-        }
-        else if (input1 is ABParam<ABRef>)
-        {
-            ABParam<ABRef> param = (ABParam<ABRef>)input1;
-            reference = param.Evaluate(context);
-        }
+        reference = OperatorHelper.Instance.getRefParam(context, input1);
 
         //Get identifier
         ABText identifier = null;
         ABNode input2 = Inputs[1];
-        if (input2 is ABOperator<ABText>)
-        {
-            ABOperator<ABText> abOperator = (ABOperator<ABText>)input2;
-            identifier = abOperator.Evaluate(context);
-        }
-        else if (input2 is ABParam<ABText>)
-        {
-            ABParam<ABText> param = (ABParam<ABText>)input2;
-            identifier = param.Evaluate(context);
-        }
+        identifier = OperatorHelper.Instance.getTextParam(context, input2);
+
 
         //Result
         return (ABScalar)reference.GetAttr(identifier.Value);
