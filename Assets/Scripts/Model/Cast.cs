@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class Cast {
     private string behaviorModelIdentifier;
-    private SlotComponent head;
-    private SlotComponent arms;
-    private SlotComponent body;
-    private SlotComponent legs;
-    private SlotComponent queue;
-    private SlotComponent none1;
-    private SlotComponent none2;
-    private SlotComponent none3;
+    private List<CastComponent> head = new List<CastComponent>();
+    private List<CastComponent> tail = new List<CastComponent>();
 
     public string BehaviorModelIdentifier
     {
@@ -23,6 +17,32 @@ public class Cast {
         set
         {
             behaviorModelIdentifier = value;
+        }
+    }
+
+    public List<CastComponent> Head
+    {
+        get
+        {
+            return head;
+        }
+
+        set
+        {
+            head = value;
+        }
+    }
+
+    public List<CastComponent> Tail
+    {
+        get
+        {
+            return tail;
+        }
+
+        set
+        {
+            tail = value;
         }
     }
 }

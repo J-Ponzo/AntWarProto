@@ -8,9 +8,8 @@ public class AgentComponent : MonoBehaviour {
     private float id;
     [SerializeField]
     private string name;
-    //TODO
-    //[SerializeField]
-    //private color;
+    [SerializeField]
+    private Color32 color;
     [SerializeField]
     private float prodCost;
     [SerializeField]

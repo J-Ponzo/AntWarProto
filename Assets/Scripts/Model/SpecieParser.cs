@@ -50,6 +50,22 @@ public class SpecieParser
     {
         Cast cast = new Cast();
         cast.BehaviorModelIdentifier = tokens[1];
+        int headSize = int.Parse(tokens[2]);
+        for (int i = 3; i < headSize + 3; i++)
+        {
+            if (tokens[i] == "") break;
+            int id = int.Parse(tokens[i]);
+            CastComponent component = ComponentFactory.CreateComponent(id);
+            cast.Head.Add(component);
+        }
+        for (int i = headSize + 3; i < tokens.Length; i++)
+        {
+            if (tokens[i] == "") break;
+            int id = int.Parse(tokens[i]);
+            CastComponent component = 
+                ComponentFactory.CreateComponent(id);
+            cast.Tail.Add(component);
+        }
         specie.Casts.Add(tokens[0], cast);
     }
 

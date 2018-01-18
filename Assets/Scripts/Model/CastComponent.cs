@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlotComponent : MonoBehaviour {
+public class CastComponent : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
