@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AgentContext : MonoBehaviour
 {
-    [BindParam(Identifier = "testBool")]
+    /*[BindParam(Identifier = "testBool")]
     bool boolParam = true;
     [BindParam(Identifier = "testByte")]
     byte byteParam = 8;
@@ -90,5 +90,44 @@ public class AgentContext : MonoBehaviour
     void Update()
     {
         location = new Vector3(transform.position.x, transform.position.z);
+    }*/
+    [BindParam(Identifier = "self")]
+    [SerializeField]
+    private GameObject self;
+    [BindParam(Identifier = "hive")]
+    [SerializeField]
+    private GameObject home;
+
+    [BindParam(Identifier = "enemies")]
+    [SerializeField]
+    private GameObject[] enemies;
+    [BindParam(Identifier = "allies")]
+    [SerializeField]
+    private GameObject[] allies;
+    [BindParam(Identifier = "resources")]
+    [SerializeField]
+    private GameObject[] resources;
+    [BindParam(Identifier = "traces")]
+    [SerializeField]
+    private GameObject[] traces;
+
+    // Use this for initialization
+    void Start()
+    {
+        AgentEntity agentScript = gameObject.GetComponent<AgentEntity>();
+        if (agentScript.Authority == PlayerAuthority.Player1)
+        {
+            home = GameManager.instance.P1_hive;
+        }
+        else if (agentScript.Authority == PlayerAuthority.Player2)
+        {
+            home = GameManager.instance.P2_hive;
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 }
