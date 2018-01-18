@@ -21,10 +21,18 @@ public class AB_Bool_Get_Ref_Txt_Operator : ABOperator<ABBool>
 
 		//Return
 		ABBool result = TypeFactory.CreateEmptyBool();
+
+		if( s1 == null || s2 == null ){
+			throw new System.ArgumentNullException();
+		}
 		ABBool call = ((ABBool)s1.GetAttr( s2.Value ));
+
 		if( call != null ){
 			result.Value = call.Value;
+			return result;
 		}
-		return result;
+		else{
+			throw new System.Exception( "key not found" );
+		}
     }
 }
