@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 33692921037449382}
   - component: {fileID: 23313353117804852}
   m_Layer: 0
-  m_Name: Hive
+  m_Name: Home
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

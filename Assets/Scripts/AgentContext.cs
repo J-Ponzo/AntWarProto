@@ -100,16 +100,94 @@ public class AgentContext : MonoBehaviour
 
     [BindParam(Identifier = "enemies")]
     [SerializeField]
-    private GameObject[] enemies;
+    private GameObject[] enemies = new GameObject[0];
     [BindParam(Identifier = "allies")]
     [SerializeField]
-    private GameObject[] allies;
+    private GameObject[] allies = new GameObject[0];
     [BindParam(Identifier = "resources")]
     [SerializeField]
-    private GameObject[] resources;
+    private GameObject[] resources = new GameObject[0];
     [BindParam(Identifier = "traces")]
     [SerializeField]
-    private GameObject[] traces;
+    private GameObject[] traces = new GameObject[0];
+
+    public GameObject Self
+    {
+        get
+        {
+            return self;
+        }
+
+        set
+        {
+            self = value;
+        }
+    }
+
+    public GameObject Home
+    {
+        get
+        {
+            return home;
+        }
+
+        set
+        {
+            home = value;
+        }
+    }
+
+    public GameObject[] Enemies
+    {
+        get
+        {
+            return enemies;
+        }
+
+        set
+        {
+            enemies = value;
+        }
+    }
+
+    public GameObject[] Allies
+    {
+        get
+        {
+            return allies;
+        }
+
+        set
+        {
+            allies = value;
+        }
+    }
+
+    public GameObject[] Resources
+    {
+        get
+        {
+            return resources;
+        }
+
+        set
+        {
+            resources = value;
+        }
+    }
+
+    public GameObject[] Traces
+    {
+        get
+        {
+            return traces;
+        }
+
+        set
+        {
+            traces = value;
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -117,11 +195,11 @@ public class AgentContext : MonoBehaviour
         AgentEntity agentScript = gameObject.GetComponent<AgentEntity>();
         if (agentScript.Authority == PlayerAuthority.Player1)
         {
-            home = GameManager.instance.P1_hive;
+            Home = GameManager.instance.P1_home;
         }
         else if (agentScript.Authority == PlayerAuthority.Player2)
         {
-            home = GameManager.instance.P2_hive;
+            Home = GameManager.instance.P2_home;
         }
     }
 

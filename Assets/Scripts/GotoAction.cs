@@ -30,27 +30,33 @@ public class GotoAction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //if (!activated)
-        //{
-        //    return;
-        //}
+        if (!activated)
+        {
+            return;
+        }
 
-        //if (path.Length > 0)
-        //{
-        //    agentContext.targetPt = path[0];
-        //}
+        if (path.Length > 0)
+        {
+            agentContext.Self.GetComponent<AgentScript>().TrgPos = path[0];
+        }
 
-        //if (Vector3.Distance(agentContext.targetPt, agentContext.location) < 0.1f)
-        //{
-        //    this.transform.position = new Vector3(
-        //        agentContext.targetPt.x, 0f, agentContext.targetPt.y);
-        //}
-        //else
-        //{
-        //    Vector3 dir = (agentContext.targetPt - agentContext.location).normalized;
-        //    float speed = 5f;
-        //    this.transform.position +=
-        //        Time.deltaTime * speed * new Vector3(dir.x, 0f, dir.y);
-        //}
+        if (Vector3.Distance(
+            agentContext.Self.GetComponent<AgentScript>().TrgPos,
+            agentContext.Self.GetComponent<AgentScript>().CurPos) < 0.1f)
+        {
+            this.transform.position = new Vector3(
+                agentContext.Self.GetComponent<AgentScript>().TrgPos.x, 
+                0f, 
+                agentContext.Self.GetComponent<AgentScript>().TrgPos.y);
+        }
+        else
+        {
+            Vector3 dir = (
+                agentContext.Self.GetComponent<AgentScript>().TrgPos 
+                - agentContext.Self.GetComponent<AgentScript>().CurPos).normalized;
+            float speed = 5f;
+            this.transform.position +=
+                Time.deltaTime * speed * new Vector3(dir.x, 0f, dir.y);
+        }
     }
 }

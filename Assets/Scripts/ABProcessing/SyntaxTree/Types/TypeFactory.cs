@@ -35,6 +35,8 @@ public class TypeFactory {
 
     public static ABTable<T> CreateEmptyTable<T>() where T : IABSimpleType
     {
-        return new ABTable<T>();
+        ABTable<T> tab = new ABTable<T>();
+        tab.Values = new T[0];
+        return tab;
     }
 }

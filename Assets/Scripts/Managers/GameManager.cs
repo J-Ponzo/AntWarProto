@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private GameObject emptyAgentPrefab;
     [SerializeField]
-    private GameObject hivePrefab;
+    private GameObject homePrefab;
     [SerializeField]
     private GameObject[] p1_unitTemplates;
     [SerializeField]
@@ -46,36 +46,36 @@ public class GameManager : MonoBehaviour {
 
     //Instancied Game Objects
     [SerializeField]
-    private GameObject p1_hive;
+    private GameObject p1_home;
     [SerializeField]
-    private GameObject p2_hive;
+    private GameObject p2_home;
 
     private Specie p1_specie;
     private Specie p2_specie;
 
-    public GameObject P1_hive
+    public GameObject P1_home
     {
         get
         {
-            return p1_hive;
+            return p1_home;
         }
 
         set
         {
-            p1_hive = value;
+            p1_home = value;
         }
     }
 
-    public GameObject P2_hive
+    public GameObject P2_home
     {
         get
         {
-            return p2_hive;
+            return p2_home;
         }
 
         set
         {
-            p2_hive = value;
+            p2_home = value;
         }
     }
 
@@ -189,12 +189,12 @@ public class GameManager : MonoBehaviour {
     private void InitGameObjects()
     {
         //Hives
-        p1_hive = Instantiate(hivePrefab, new Vector3(-30f, -0.45f, 0f), Quaternion.identity);
-        p1_hive.name = "p1_hive";
-        p2_hive = Instantiate(hivePrefab, new Vector3(30f, -0.45f, 0f), Quaternion.identity);
-        p2_hive.name = "p2_hive";
-        HiveScript p1_hiveScript = p1_hive.GetComponent<HiveScript>();
-        HiveScript p2_hiveScript = p2_hive.GetComponent<HiveScript>();
+        p1_home = Instantiate(homePrefab, new Vector3(-30f, -0.45f, 0f), Quaternion.identity);
+        p1_home.name = "p1_hive";
+        p2_home = Instantiate(homePrefab, new Vector3(30f, -0.45f, 0f), Quaternion.identity);
+        p2_home.name = "p2_hive";
+        HomeScript p1_hiveScript = p1_home.GetComponent<HomeScript>();
+        HomeScript p2_hiveScript = p2_home.GetComponent<HomeScript>();
         p1_hiveScript.RedResAmout = p1_specie.RedResAmount;
         p1_hiveScript.GreenResAmout = p1_specie.GreenResAmount;
         p1_hiveScript.BlueResAmout = p1_specie.BlueResAmount;

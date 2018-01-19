@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HiveScript : MonoBehaviour {
+public class HomeScript : MonoBehaviour {
     [AttrName(Identifier = "pos")]
     [SerializeField]
     private Vector2 location;

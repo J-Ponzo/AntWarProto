@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe412959c0bba774795cc7552807bad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  self: {fileID: 0}
+  self: {fileID: 1251105846208636}
   home: {fileID: 0}
   enemies: []
   allies: []
@@ -201,9 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82aa6bfea7d13f44ca2087917e38dbf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castName: 
-  location: {x: 0, y: 0}
-  target: {x: 0, y: 0}
+  cast: 
+  curPos: {x: 0, y: 0}
+  trgPos: {x: 0, y: 0}
   vitalityMax: 0
   vitality: 0
   strength: 0
