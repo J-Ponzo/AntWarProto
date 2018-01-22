@@ -154,6 +154,8 @@ MonoBehaviour:
   PLAYER2_SPECIE_FOLDER: Player2/
   emptyAgentPrefab: {fileID: 1618866709941296, guid: 6215d6a4caf1cf1409b9e0f6399c53bd,
     type: 2}
+  emptyComponentPrefab: {fileID: 1398855149140170, guid: b7177d6fbcddc23459a18fcf9dfbb292,
+    type: 2}
   homePrefab: {fileID: 1290639871379738, guid: d70cb9531197fff4fbc01df767fb8070, type: 2}
   p1_unitTemplates: []
   p2_unitTemplates: []

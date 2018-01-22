@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private GameObject emptyAgentPrefab;
     [SerializeField]
+    private GameObject emptyComponentPrefab;
+    [SerializeField]
     private GameObject homePrefab;
     [SerializeField]
     private GameObject[] p1_unitTemplates;
@@ -147,7 +149,8 @@ public class GameManager : MonoBehaviour {
         p1_unitTemplates = new GameObject[p1_specie.Casts.Values.Count];
         GameObject template = Instantiate(emptyAgentPrefab);
         template.SetActive(false);
-        UnitTemplateInitializer.InitTemplate(p1_specie.Casts[p1_specie.QueenCastName], template);
+        UnitTemplateInitializer.InitTemplate(
+            p1_specie.Casts[p1_specie.QueenCastName], template, emptyComponentPrefab);
         p1_unitTemplates[0] = template;
         int ind = 0;
         foreach (string key in p1_specie.Casts.Keys)
@@ -159,7 +162,7 @@ public class GameManager : MonoBehaviour {
                 template.GetComponent<AgentEntity>().Authority = PlayerAuthority.Player1;
                 template.SetActive(false);
                 p1_unitTemplates[ind] = template;
-                UnitTemplateInitializer.InitTemplate(cast, template);
+                UnitTemplateInitializer.InitTemplate(cast, template, emptyComponentPrefab);
             }
             ind++;
         }
@@ -168,7 +171,8 @@ public class GameManager : MonoBehaviour {
         p2_unitTemplates = new GameObject[p2_specie.Casts.Values.Count];
         template = Instantiate(emptyAgentPrefab);
         template.SetActive(false);
-        UnitTemplateInitializer.InitTemplate(p2_specie.Casts[p1_specie.QueenCastName], template);
+        UnitTemplateInitializer.InitTemplate(
+            p2_specie.Casts[p1_specie.QueenCastName], template, emptyComponentPrefab);
         p2_unitTemplates[0] = template;
         ind = 0;
         foreach (string key in p2_specie.Casts.Keys)
@@ -180,7 +184,7 @@ public class GameManager : MonoBehaviour {
                 template.GetComponent<AgentEntity>().Authority = PlayerAuthority.Player2;
                 template.SetActive(false);
                 p2_unitTemplates[ind] = template;
-                UnitTemplateInitializer.InitTemplate(cast, template);
+                UnitTemplateInitializer.InitTemplate(cast, template, emptyComponentPrefab);
             }
             ind++;
         }
