@@ -42,13 +42,14 @@ public class LayAction : MonoBehaviour {
         {
             Lay();
             coolDownElapsed = false;
-            Invoke("EndCooldown", 1);
+            Invoke("EndCooldown", 0.1f);
         }
     }
 
     private void Lay()
     {
-        GameObject childTemplate = GameManager.instance.GetUnitTemplate(agentEntity.Authority, castName);
+        GameObject childTemplate = GameManager.instance.GetUnitTemplate(
+            agentEntity.Authority, castName);
         HomeScript home = GameManager.instance.GetHome(agentEntity.Authority);
         GameObject child = Instantiate(
             childTemplate, this.transform.position, this.transform.rotation);

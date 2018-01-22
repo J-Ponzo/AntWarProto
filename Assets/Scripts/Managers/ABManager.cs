@@ -30,6 +30,9 @@ public class ABManager : MonoBehaviour {
     }
 
     [SerializeField]
+    private float fps = 1f;
+    private float cooldown = -1f;
+    [SerializeField]
     private string INPUTS_FOLDER_PATH = "Assets/Inputs/";
     private int lastId = 0;
 
@@ -38,7 +41,7 @@ public class ABManager : MonoBehaviour {
 
     private List<AgentEntity> agents = new List<AgentEntity>();
     private List<ABModel> models = new List<ABModel>();
-    private List<ABInstance> instances = new List<ABInstance>();
+    private List<ABInstance> instances = new List<ABInstance>(); 
 
     // Use this for initialization
     void Start () {
@@ -46,8 +49,21 @@ public class ABManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		foreach (AgentEntity agent in agents)
+	void Update ()
+    {
+        if (cooldown < 0)
+        {
+            Frame();
+            cooldown = 1f / fps;
+        } else
+        {
+            cooldown -= Time.deltaTime;
+        }  
+    }
+
+    private void Frame()
+    {
+        foreach (AgentEntity agent in agents)
         {
             // Compute Action
             ABInstance instance = FindABInstance(agent.Id);
@@ -61,7 +77,7 @@ public class ABManager : MonoBehaviour {
             {
                 if (action.Parameters[i] is AB_TxtGate_Operator)
                 {
-                    IABType param = 
+                    IABType param =
                         ((AB_TxtGate_Operator)action.Parameters[i]).Evaluate(context);
                     actionParams.Add(param);
                 }
@@ -75,7 +91,7 @@ public class ABManager : MonoBehaviour {
 
             agent.Behaviour.CurActionParams = actionParams.ToArray();
         }
-	}
+    }
 
     public ABInstance FindABInstance(int agentId)
     {

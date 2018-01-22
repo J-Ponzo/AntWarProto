@@ -90,6 +90,12 @@ public class AgentBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //We arre between 2 IA frames
+        if (curActionParams == null)
+        {
+            return;
+        }
+
         // Inject Param on corresponding Action Script then enable it
         switch (curActionType)
         {
