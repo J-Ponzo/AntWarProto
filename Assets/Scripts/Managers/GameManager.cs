@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
 
     //Paths
     public string SPECIE_FILE_SUFFIX = "specie.csv";
+
     public string INPUTS_FOLDER_PATH = "Assets/Inputs/";
     public string PLAYER1_SPECIE_FOLDER = "Player1/";
     public string PLAYER2_SPECIE_FOLDER = "Player2/";
@@ -151,20 +152,22 @@ public class GameManager : MonoBehaviour {
         template.SetActive(false);
         UnitTemplateInitializer.InitTemplate(
             p1_specie.Casts[p1_specie.QueenCastName], template, emptyComponentPrefab);
+        template.GetComponent<AgentEntity>().CastName = p1_specie.QueenCastName;
+        template.GetComponent<AgentEntity>().Authority = PlayerAuthority.Player1;
         p1_unitTemplates[0] = template;
-        int ind = 0;
+        int ind = 1;
         foreach (string key in p1_specie.Casts.Keys)
         {
             if (key != p1_specie.QueenCastName)
             {
                 Cast cast = p1_specie.Casts[key];
                 template = Instantiate(emptyAgentPrefab);
+                template.GetComponent<AgentEntity>().CastName = key;
                 template.GetComponent<AgentEntity>().Authority = PlayerAuthority.Player1;
                 template.SetActive(false);
-                p1_unitTemplates[ind] = template;
+                p1_unitTemplates[ind++] = template;
                 UnitTemplateInitializer.InitTemplate(cast, template, emptyComponentPrefab);
             }
-            ind++;
         }
 
         //Player2 templates (queen first)
@@ -172,21 +175,23 @@ public class GameManager : MonoBehaviour {
         template = Instantiate(emptyAgentPrefab);
         template.SetActive(false);
         UnitTemplateInitializer.InitTemplate(
-            p2_specie.Casts[p1_specie.QueenCastName], template, emptyComponentPrefab);
+            p2_specie.Casts[p2_specie.QueenCastName], template, emptyComponentPrefab);
+        template.GetComponent<AgentEntity>().CastName = p2_specie.QueenCastName;
+        template.GetComponent<AgentEntity>().Authority = PlayerAuthority.Player2;
         p2_unitTemplates[0] = template;
-        ind = 0;
+        ind = 1;
         foreach (string key in p2_specie.Casts.Keys)
         {
             if (key != p2_specie.QueenCastName)
             {
                 Cast cast = p2_specie.Casts[key];
                 template = Instantiate(emptyAgentPrefab);
+                template.GetComponent<AgentEntity>().CastName = key;
                 template.GetComponent<AgentEntity>().Authority = PlayerAuthority.Player2;
                 template.SetActive(false);
-                p2_unitTemplates[ind] = template;
+                p2_unitTemplates[ind++] = template;
                 UnitTemplateInitializer.InitTemplate(cast, template, emptyComponentPrefab);
             }
-            ind++;
         }
     }
 
@@ -224,5 +229,41 @@ public class GameManager : MonoBehaviour {
         p2_queen.SetActive(true);
         p1_hiveScript.Population[p1_specie.QueenCastName]++;
         p2_hiveScript.Population[p2_specie.QueenCastName]++;
+    }
+
+    public GameObject GetUnitTemplate(PlayerAuthority authority, string castName)
+    {
+        // Select template list
+        GameObject[] unitTemplates = null;
+        if (authority == PlayerAuthority.Player1)
+        {
+            unitTemplates = p1_unitTemplates;
+        } else if (authority == PlayerAuthority.Player2)
+        {
+            unitTemplates = p2_unitTemplates;
+        }
+
+        //Find unit template
+        foreach (GameObject unitTemplate in unitTemplates)
+        {
+            AgentEntity unitTemplateEntity = 
+                unitTemplate.GetComponent<AgentEntity>();
+            if (unitTemplateEntity.CastName == castName)
+            {
+                return unitTemplate;
+            }
+        }
+        return null;
+    }
+
+    public HomeScript GetHome(PlayerAuthority authority)
+    {
+        if (authority == PlayerAuthority.Player1)
+        {
+            return p1_home.GetComponent<HomeScript>();
+        } else
+        {
+            return p2_home.GetComponent<HomeScript>();
+        }
     }
 }

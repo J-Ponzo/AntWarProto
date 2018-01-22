@@ -9,6 +9,10 @@ public class LayAction : MonoBehaviour {
     [SerializeField]
     private string castName;
 
+    private bool coolDownElapsed = true;
+
+    private AgentEntity agentEntity;
+
     public string CastName
     {
         get
@@ -24,8 +28,8 @@ public class LayAction : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
+        agentEntity = GetComponent<AgentEntity>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -33,5 +37,27 @@ public class LayAction : MonoBehaviour {
         {
             return;
         }
-	}
+
+        if (coolDownElapsed)
+        {
+            Lay();
+            coolDownElapsed = false;
+            Invoke("EndCooldown", 1);
+        }
+    }
+
+    private void Lay()
+    {
+        GameObject childTemplate = GameManager.instance.GetUnitTemplate(agentEntity.Authority, castName);
+        HomeScript home = GameManager.instance.GetHome(agentEntity.Authority);
+        GameObject child = Instantiate(
+            childTemplate, this.transform.position, this.transform.rotation);
+        child.SetActive(true);
+        home.Population[castName]++;
+    }
+
+    private void EndCooldown()
+    {
+        coolDownElapsed = true;
+    }
 }

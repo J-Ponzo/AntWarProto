@@ -12,6 +12,8 @@ public class AgentEntity : MonoBehaviour
     private AgentBehavior behaviour;
     [SerializeField]
     private AgentContext context;
+    [SerializeField]
+    private string castName;
 
     public AgentBehavior Behaviour
     {
@@ -62,6 +64,19 @@ public class AgentEntity : MonoBehaviour
         set
         {
             authority = value;
+        }
+    }
+
+    public string CastName
+    {
+        get
+        {
+            return castName;
+        }
+
+        set
+        {
+            castName = value;
         }
     }
 

@@ -2,6 +2,8 @@
 
 public class AB_Vec_RandCircle_Vec_Scal_Operator : ABOperator<ABVec>
 {
+    public static Random random = new Random(42);
+
     public AB_Vec_RandCircle_Vec_Scal_Operator()
     {
         this.Inputs = new ABNode[2];
@@ -20,7 +22,7 @@ public class AB_Vec_RandCircle_Vec_Scal_Operator : ABOperator<ABVec>
         radius = OperatorHelper.Instance.getScalarParam(context, input2);
 
         //Randomize point
-        Random random = new Random();
+        
         float teta = ((float) random.NextDouble()) * 2f * (float) Math.PI;
         teta -= (float)Math.PI;
 
