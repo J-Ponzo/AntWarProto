@@ -196,7 +196,7 @@ public class ComponentParser {
 			string[] attrValues = attribute.Split( new char[]{' '} );
 			if( attrValues.Length > 1 ){
 				switch( attrValues[0] ){
-				case "move_spd": component.MoveSpeedBuff = float.Parse(attrValues[1]); return;
+				case "move_spd.": component.MoveSpeedBuff = float.Parse(attrValues[1]); return;
 				case "act._spd": component.ActionSpeedBuff = float.Parse(attrValues[1]); return;
 				case "strength": component.StrengthBuff = float.Parse(attrValues[1]); return;
 				case "vitality": component.VitalityBuff = float.Parse(attrValues[1]); return;

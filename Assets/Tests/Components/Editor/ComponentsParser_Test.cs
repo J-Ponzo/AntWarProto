@@ -48,4 +48,22 @@ public class ComponentsParser_Test {
 		Assert.AreEqual( 1, component.StrengthBuff );
 		Assert.AreEqual( 0, component.ActionSpeedBuff );
 	}
+
+	[Test]
+	public void basic_doubleAttr() {
+		ComponentFactory.CreateFactory( readFile( pathFile ) );
+
+		AgentComponent component = ComponentFactory.CreateComponent( 22 );
+
+		Assert.AreEqual( "Musculature Démoniaque", component.Name );
+		Assert.AreEqual( (Color32)UnityEngine.Color.red, component.Color );
+		Assert.AreEqual( 0, component.ProdCost );
+		Assert.AreEqual( 0, component.BuyCost );
+		Assert.AreEqual( false, component.EnablePickDrop );
+		Assert.AreEqual( false, component.EnableGotoHold );
+		Assert.AreEqual( 1, component.StrengthBuff );
+		Assert.AreEqual( 1, component.VitalityBuff );
+		Assert.AreEqual( -0.5, component.MoveSpeedBuff );
+		Assert.AreEqual( 0, component.HeatRangeBuff );
+	}
 }
