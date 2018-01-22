@@ -193,14 +193,8 @@ public class AgentContext : MonoBehaviour
     void Start()
     {
         AgentEntity agentScript = gameObject.GetComponent<AgentEntity>();
-        if (agentScript.Authority == PlayerAuthority.Player1)
-        {
-            Home = GameManager.instance.P1_home;
-        }
-        else if (agentScript.Authority == PlayerAuthority.Player2)
-        {
-            Home = GameManager.instance.P2_home;
-        }
+        Home = GameManager.instance.GetHome(agentScript.Authority).gameObject;
+
     }
 
     // Update is called once per frame
